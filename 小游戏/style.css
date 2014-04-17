@@ -1,0 +1,17 @@
+.container {
+  width: 800px;
+  height: 500px;
+  border: 1px solid #000; }
+  .container ul li {
+    float: left;
+    margin-left: 30px;
+    width: 100px;
+    height: 100px;
+    background: rgba(0, 0, 0, 0.3);
+    text-align: center;
+    display: block;
+    position: relative; }
+    .container ul li p {
+      line-height: 102px;
+      margin: 0;
+      font-size: 20px; }

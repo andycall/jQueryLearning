@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div class="container">
+    <ul>
+        <li><p>A</p></li>
+        <li><p>B</p></li>
+        <li><p>C</p></li>
+        <li><p>D</p></li>
+        <li><p>E</p></li>
+    </ul>
+</div>
+<button id="reset">reset</button>
+</body>
+<script type="text/javascript" src="../jQuery1.11.0.js"></script>
+<script>
+var wrapper = $(".container"),
+    lis = $("ul li"),
+    postionArr = [];
+
+    function layout(){
+        var item,top,left;
+        var wrapperPosition = wrapper.css("position");
+        if(wrapperPosition == 'static'){
+           wrapper.css("position",'relative');
+        }
+        for(var i = 0,len = lis.length; i < len; i ++){
+            item = lis[i];
+
+            top = (item.offsetTop || item.documentElement.offsetTop);
+            left = (item.offsetLeft|| item.documentElement.offsetLeft);
+
+            lis[i].setAttribute('data-index',i);
+            postionArr.push({
+                item : item,
+                top: top,
+                left: left
+            });
+        }
+        for(var i = 0,len = postionArr.length; i < len; i ++){
+            item = postionArr[i].item;
+            top = postionArr[i].top;
+            left = postionArr[i].left;
+            $(item).css({
+                "top" : top,
+                "left" : left,
+                "position" : "absolute",
+                "margin" : "0"
+            });
+        }
+    }
+layout();
+
+
+$(function(){
+    var oldStyle,
+        randomLeft,
+        randomTop;
+    $("ul li").on('mouseover',function(){
+        randomLeft = Math.random() * 700;
+        randomTop = Math.random() * 400;
+        $(this).animate({
+            left : randomLeft,
+            top : randomTop
+        });
+    });
+    $('#reset').on('click',function(){
+        $("ul li").each(function(index,value){
+            $(value).animate({
+                left : postionArr[index].left,
+                top : postionArr[index].top
+            })
+        })
+    });
+});
+</script>
+</html>
