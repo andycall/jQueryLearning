@@ -1,4 +1,4 @@
 jQueryLearning
 ==============
 
-This is jQuery learning course for black locust tree
+This is a jQuery learning course for black locust tree
